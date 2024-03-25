@@ -2,6 +2,7 @@
 import streamlit as st
 #from snowflake.snowpark.context import get_active_session
 from snowflake.snowpark.functions import col
+from snowflake.snowpark import Session
 
 # Write directly to the app
 st.title(":cup_with_straw: Customize Your Smoothie :cup_with_straw:")
@@ -19,9 +20,21 @@ st.write(
 name_on_order = st.text_input('Name on smoothie:')
 st.write('The name on your smoothie will be: ', name_on_order)
 
+connection_parameters = {
+            "account": "NMDNKEE-LY58078",
+            "user": "JoelDreskin",
+            "password": "SnowD00dle!",
+            "role" : "SYSADMIN",
+            "warehouse" : "COMPUTE_WH",
+            "database" : "SMOOTHIES",
+            "schema" : "PUBLIC"
+        }
+ 
+session = Session.builder.configs(connection_parameters).create()
+
 #session = get_active_session()
-cnx = st.connection("connection.snowflake")
-session = cnx.session()
+#cnx = st.connection("connection.snowflake")
+#session = cnx.session()
 
 st.write('Session establilshed', session)
 
