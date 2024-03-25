@@ -36,7 +36,7 @@ session = Session.builder.configs(connection_parameters).create()
 #cnx = st.connection("connection.snowflake")
 #session = cnx.session()
 
-st.write('Session establilshed', session)
+#st.write('Session establilshed', session)
 
 my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'))
 #st.dataframe(data=my_dataframe, use_container_width=True)
